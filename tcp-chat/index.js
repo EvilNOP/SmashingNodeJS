@@ -15,6 +15,14 @@ const server = net.createServer((conn) => {
   
   count++;
   
+  function broadcast(msg, exceptMyself) {
+    for (let i in users) {
+      if (!exceptMyself || i != nickname) {
+        users[i].write(msg);
+      }
+    }
+  }
+  
   conn.on('data', (chunk) => {
     chunk = chunk.replace('\r\n', '');
     
@@ -28,13 +36,13 @@ const server = net.createServer((conn) => {
         users[nickname] = conn;
         
         for (let i in users) {
-          users[i].write(`${nickname} joined the room\n`);
+          broadcast(`${nickname} joined the room\n`);
         }
       }
     } else {
       for (let i in users) {
         if (i != nickname) {
-          users[i].write(` > ${nickname}: ${chunk}\n`);
+          broadcast(` > ${nickname}: ${chunk}\n`, true);
         }
       }
     }
@@ -42,6 +50,9 @@ const server = net.createServer((conn) => {
   
   conn.on('close', () => {
     count--;
+    delete users[nickname];
+    
+    broadcast(` > ${nickname} left the room\n`);
   });
 });
 
