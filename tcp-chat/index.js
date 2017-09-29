@@ -1,7 +1,10 @@
 const net = require('net');
 let count = 0;
+let users = {};
 
 const server = net.createServer((conn) => {
+  let nickname;
+  
   conn.setEncoding('utf8');
   
   conn.write(
@@ -13,7 +16,28 @@ const server = net.createServer((conn) => {
   count++;
   
   conn.on('data', (chunk) => {
-    console.log(chunk);
+    chunk = chunk.replace('\r\n', '');
+    
+    if (!nickname) {
+      if (users[chunk]) {
+        conn.write('nickname already in use. try again:');
+        
+        return;
+      } else {
+        nickname = chunk;
+        users[nickname] = conn;
+        
+        for (let i in users) {
+          users[i].write(`${nickname} joined the room\n`);
+        }
+      }
+    } else {
+      for (let i in users) {
+        if (i != nickname) {
+          users[i].write(` > ${nickname}: ${chunk}\n`);
+        }
+      }
+    }
   });
   
   conn.on('close', () => {
