@@ -1,4 +1,5 @@
 const http = require('http');
+const qs = require('querystring');
 
 const server = http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html'});
@@ -22,9 +23,11 @@ const server = http.createServer((req, res) => {
     });
     
     req.on('end', () => {
-      res.end('<p>Content-Type: ' + req.headers['content-type'] + '</p>'
-        + '<p>Data: </p><pre>' + body + '</pre>')
+      res.end('<p>Your name is <b>' + qs.parse(body).name + '</b></p>');
     });
+  } else {
+    res.writeHead(404);
+    res.end('Not Found');
   }
 });
 
