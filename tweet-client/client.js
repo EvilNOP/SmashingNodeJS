@@ -9,7 +9,7 @@ if (!search.length) {
 
 console.log('\n searching for: ' + search + '\n');
 
-http.request({
+http.get({
   host: 'search.tweet.com',
   url: '/search.json?' + qs.stringify({ q: search }),
 }, (res) => {
@@ -30,5 +30,4 @@ http.request({
       console.log('--');
     });
   });
-}).end();
-
+});
