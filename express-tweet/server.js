@@ -3,7 +3,7 @@
 */
 
 const express = require('express');
-// const search = require('./views/search.ejs');
+const search = require('./search');
 
 /**
 * Create app.
@@ -25,6 +25,16 @@ app.set('view options', { layout: false });
 
 app.get('/', (req, res) => {
   res.render('index');
+});
+
+app.get('/search', (req, res, next) => {
+  search(req.query.q, (err, tweets) => {
+    if (err) {
+      return next(err);
+    }
+    
+    res.render('search', { results: tweets, search: req.query.q })
+  });
 });
 
 /**
