@@ -8,7 +8,7 @@
  * @api public
  */
 
-exports.exports = function (opts) {
+module.exports = function (opts) {
   let time = opts.tiime || 100;
   
   return function (req, res, next) {
