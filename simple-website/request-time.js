@@ -15,7 +15,7 @@ module.exports = function (opts) {
     let timer = setTimeout(() => {
       console.log('is taking too long!', req.method, req.url);
     }, time);
-    console.log('End: ');
+    
     console.log(res.end);
     let end = res.end;
     
