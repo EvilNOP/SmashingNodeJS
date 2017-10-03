@@ -8,7 +8,7 @@ app.use(morgan('dev'));
 app.use(time({ time: 500 }));
 
 app.use((req, res, next) => {
-  if (req === '/a') {
+  if (req.url === '/a') {
     res.statusCode = 200;
     res.end('Fast!');
   } else {
