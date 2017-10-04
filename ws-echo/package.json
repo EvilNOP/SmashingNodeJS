@@ -1,0 +1,28 @@
+{
+  "name": "ws-echo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EvilNOP/SmashingNodeJS.git"
+  },
+  "keywords": [
+    "websocket",
+    "express",
+    "echo"
+  ],
+  "author": "EvilNOP",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EvilNOP/SmashingNodeJS/issues"
+  },
+  "homepage": "https://github.com/EvilNOP/SmashingNodeJS#readme",
+  "dependencies": {
+    "express": "^4.16.1",
+    "websocket.io": "^0.2.1"
+  }
+}
