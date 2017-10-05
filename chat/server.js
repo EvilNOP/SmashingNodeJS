@@ -10,7 +10,7 @@ const io = sio(server);
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
-app.listen(3000);
+server.listen(3000);
 
 io.sockets.on('connection', (socket) => {
   console.log('Someone connected');
