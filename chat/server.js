@@ -17,6 +17,6 @@ io.sockets.on('connection', (socket) => {
   
   socket.on('join', (name) => {
     socket.nickname = name;
-    socket.boardcast.emit('announcement', name + ' joined the chat.');
+    socket.broadcast.emit('announcement', name + ' joined the chat.');
   });
 });

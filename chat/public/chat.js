@@ -1,7 +1,7 @@
 window.onload = function () {
   const socket = io.connect('http://localhost:3000');
   
-  socket.on('connection', () => {
+  socket.on('connect', () => {
     socket.emit('join', prompt('What is your nickname?'));
     
     document.getElementById('chat').style.display = 'block';
