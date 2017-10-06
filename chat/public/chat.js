@@ -19,9 +19,12 @@ window.onload = function () {
   const input = document.getElementById('input');
   
   document.getElementById('form').onsubmit = () => {
-    addMessage('me', input.value);
+    const li = addMessage('me', input.value);
     
-    socket.emit('text', input.value);
+    socket.emit('text', input.value, (date) => {
+      li.className = 'confirmed';
+      li.title = date;
+    });
     
     input.value = '';
     input.focus();
@@ -39,4 +42,6 @@ function addMessage(from, text) {
   li.innerHTML = `<b>${from}</b>: ${text}`;
   
   document.getElementById('messages').appendChild(li);
+  
+  return li;
 }

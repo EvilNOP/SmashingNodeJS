@@ -20,7 +20,9 @@ io.sockets.on('connection', (socket) => {
     socket.broadcast.emit('announcement', name + ' joined the chat.');
   });
   
-  socket.on('text', (msg) => {
+  socket.on('text', (msg, fn) => {
     socket.broadcast.emit('text', socket.nickname, msg);
+    
+    fn(Date().now());
   });
 });
