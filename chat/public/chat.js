@@ -13,6 +13,6 @@ window.onload = function () {
     li.className = 'announcement';
     li.innerHTML = msg;
     
-    document.getElementById('message').appendChild(li);
+    document.getElementById('messages').appendChild(li);
   });
 }
