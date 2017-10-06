@@ -14,4 +14,9 @@ server.listen(3000);
 
 io.sockets.on('connection', (socket) => {
   console.log('Someone connected');
+  
+  socket.on('join', (name) => {
+    socket.nickname = name;
+    socket.boardcast.emit('announcement', name + ' joined the chat.');
+  });
 });
