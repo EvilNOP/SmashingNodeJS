@@ -17,3 +17,15 @@ app.use(session({
 
 app.set('view engine', 'jade');
 app.set('view options', { layout: false });
+
+app.get('/', (req, res) => {
+  res.render('index', { authenticated: false });
+});
+
+app.get('/login', (req, res) => {
+  res.render('login');
+});
+
+app.get('/signup', (req, res) => {
+  res.render('signup');
+});
