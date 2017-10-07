@@ -9,7 +9,11 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(session({ secret: 'my secret' }));
+app.use(session({
+  secret: 'my secret',
+  resave: true,
+  saveUninitialized: true
+}));
 
 app.set('view engine', 'jade');
 app.set('view options', { layout: false });
