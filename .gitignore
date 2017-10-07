@@ -1,6 +1,9 @@
 # Atom Ternjs
 .tern-project
 
+# MongoDB Database Directory
+data
+
 # Logs
 logs
 *.log
