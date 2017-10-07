@@ -29,3 +29,5 @@ app.get('/login', (req, res) => {
 app.get('/signup', (req, res) => {
   res.render('signup');
 });
+
+app.listen(3000);
