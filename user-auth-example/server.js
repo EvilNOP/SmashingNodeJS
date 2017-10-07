@@ -6,6 +6,22 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 
 const app = express();
+const mongoClient = mongodb.MongoClient;
+const dburl = 'mongodb://localhost:27017/user-auth-example';
+
+mongoClient.connect(dburl, (err, db) => {
+  if (err) {
+    throw err;
+  }
+  
+  console.log("Connected successfully to server");
+  
+  app.users = db.collection('users');
+  
+  app.listen(3000, () => {
+    console.log('app listening on *:3000');
+  });
+});
 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -30,4 +46,3 @@ app.get('/signup', (req, res) => {
   res.render('signup');
 });
 
-app.listen(3000);
