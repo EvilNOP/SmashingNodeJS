@@ -15,8 +15,8 @@ app.use(session({
   saveUninitialized: true
 }));
 
+app.set('views', './views');
 app.set('view engine', 'jade');
-app.set('view options', { layout: false });
 
 app.get('/', (req, res) => {
   res.render('index', { authenticated: false });
