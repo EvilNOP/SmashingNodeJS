@@ -46,3 +46,17 @@ app.get('/signup', (req, res) => {
   res.render('signup');
 });
 
+app.post('/signup', (req, res, next) => {
+  app.users.insertOne(req.body.user, (err, result) => {
+    if (err) {
+      return next(err);
+    }
+
+    console.log(result.ops[0].email);
+    res.redirect('/login/' + result.ops[0].email);
+  });
+});
+
+app.get('/login/:signupEmail', (req, res) => {
+  res.render('login', { signupEmail: req.params.signupEmail });
+});
