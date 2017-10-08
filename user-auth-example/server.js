@@ -23,7 +23,7 @@ mongoClient.connect(dburl, (err, db) => {
   });
 });
 
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(session({
   secret: 'my secret',
