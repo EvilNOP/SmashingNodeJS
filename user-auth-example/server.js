@@ -51,8 +51,7 @@ app.post('/signup', (req, res, next) => {
     if (err) {
       return next(err);
     }
-
-    console.log(result.ops[0].email);
+    
     res.redirect('/login/' + result.ops[0].email);
   });
 });
