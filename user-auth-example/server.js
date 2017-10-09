@@ -16,7 +16,17 @@ mongoClient.connect(dburl, (err, db) => {
   
   console.log("Connected successfully to server");
   
-  app.users = db.collection('users');
+  const users = db.collection('users');
+
+  app.users = users;
+  
+  users.createIndex({ email: 1, password: 1 }, (err, indexName) => {
+    if (err) {
+      throw err;
+    }
+
+    console.log(`created index: ${indexName}`);
+  });
   
   app.listen(3000, () => {
     console.log('app listening on *:3000');
