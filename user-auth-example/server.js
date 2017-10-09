@@ -52,6 +52,21 @@ app.get('/login', (req, res) => {
   res.render('login');
 });
 
+app.post('/login', (req, res, next) => {
+  app.users.findOne({ email: req.body.user.email, password: req.body.user.password }, (err, doc) => {
+    if (err) {
+      return next(err);
+    }
+
+    if (!doc) {
+      return res.send('<p>User not found.Go back and try again</p>');
+    }
+
+    req.session.loggedIn = doc._id.toString();
+    res.redirect('/');
+  });
+});
+
 app.get('/signup', (req, res) => {
   res.render('signup');
 });
