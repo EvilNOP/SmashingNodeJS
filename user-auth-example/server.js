@@ -41,11 +41,30 @@ app.use(session({
   saveUninitialized: true
 }));
 
+app.use((req, res, next) => {
+  if (req.session.loggedIn) {
+    res.locals.authenticated = true;
+    res.app.users.findOne({ _id: mongodb.ObjectID(req.session.loggedIn) }, (err, doc) => {
+      if (err) {
+        return next(err);
+      }
+
+      res.locals.me = doc;
+      console.log('doc: ' + doc);
+      next();
+    });
+  } else {
+    res.locals.authenticated = false;
+
+    next();
+  }
+});
+
 app.set('views', './views');
 app.set('view engine', 'jade');
 
 app.get('/', (req, res) => {
-  res.render('index', { authenticated: false });
+  res.render('index');
 });
 
 app.get('/login', (req, res) => {
@@ -57,7 +76,7 @@ app.post('/login', (req, res, next) => {
     if (err) {
       return next(err);
     }
-
+    
     if (!doc) {
       return res.send('<p>User not found.Go back and try again</p>');
     }
