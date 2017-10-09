@@ -1,5 +1,5 @@
-# Atom Ternjs
-.tern-project
+# ESLint
+.eslintrc.js
 
 # MongoDB Database Directory
 data
