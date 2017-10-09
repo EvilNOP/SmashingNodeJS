@@ -84,3 +84,8 @@ app.post('/signup', (req, res, next) => {
 app.get('/login/:signupEmail', (req, res) => {
   res.render('login', { signupEmail: req.params.signupEmail });
 });
+
+app.get('/logout', (req, res) => {
+  req.session.loggedIn = null;
+  res.redirect('/');
+});
