@@ -27,5 +27,8 @@
     "express-session": "^1.15.6",
     "jade": "^1.11.0",
     "mongodb": "^2.2.31"
+  },
+  "devDependencies": {
+    "eslint": "^4.8.0"
   }
 }
