@@ -1,0 +1,29 @@
+{
+  "name": "shopping-cart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EvilNOP/SmashingNodeJS.git"
+  },
+  "keywords": [
+    "express",
+    "jade",
+    "mysql"
+  ],
+  "author": "EvilNOP",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EvilNOP/SmashingNodeJS/issues"
+  },
+  "homepage": "https://github.com/EvilNOP/SmashingNodeJS#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "jade": "^1.11.0",
+    "mysql": "^2.15.0"
+  }
+}
