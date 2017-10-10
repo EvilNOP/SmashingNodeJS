@@ -25,5 +25,8 @@
     "express": "^4.16.2",
     "jade": "^1.11.0",
     "mysql": "^2.15.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.8.0"
   }
 }
