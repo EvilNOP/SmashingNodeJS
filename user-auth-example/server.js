@@ -50,7 +50,7 @@ app.use((req, res, next) => {
       }
 
       res.locals.me = doc;
-      console.log('doc: ' + doc);
+      
       next();
     });
   } else {
