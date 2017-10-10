@@ -16,7 +16,18 @@ app.get('/', (req, res, next) => {
 });
 
 app.post('/create', (req, res, next) => {
+  db.query(
+    'INSERT INTO item SET title = ?, description = ?',
+    [req.body.title, req.body.description], (err, info) => {
+      if (err) {
+        return next(err);
+      }
 
+      console.log(`created with id ${info.insertId}`);
+
+      res.redirect('/');
+    }
+  );
 });
 
 app.get('/item/:id', (req, res, next) => {
@@ -24,7 +35,17 @@ app.get('/item/:id', (req, res, next) => {
 });
 
 app.post('/item/:id/reivew', (req, res, next) => {
+  db.query('INSERT INTO review SET item_id = ?, stars = ?, text = ?',
+    [req.params.id, req.body.stars, req.body.text], (err, info) => {
+      if (err) {
+        return next(err);
+      }
+      
+      console.log(`review created with id ${info.insertId}`);
 
+      res.redirect(`/item/${req.params.id}`);
+    }
+  );
 });
 
 app.listen(3000, () => {
