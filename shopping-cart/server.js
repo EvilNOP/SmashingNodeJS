@@ -1,6 +1,9 @@
+const mysql = require('mysql');
 const express = require('express');
+const config = require('./config');
 
 const app = express();
+const db = mysql.createConnection(config);
 
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
