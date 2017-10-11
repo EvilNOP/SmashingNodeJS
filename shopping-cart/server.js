@@ -17,8 +17,8 @@ app.get('/', (req, res, next) => {
 
 app.post('/create', (req, res, next) => {
   db.query(
-    'INSERT INTO item SET title = ?, description = ?',
-    [req.body.title, req.body.description], (err, info) => {
+    'INSERT INTO item SET title = ?, description = ?, created = ?',
+    [req.body.title, req.body.description, new Date()], (err, info) => {
       if (err) {
         return next(err);
       }
