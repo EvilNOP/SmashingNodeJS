@@ -33,7 +33,39 @@ app.post('/create', (req, res, next) => {
 });
 
 app.get('/item/:id', (req, res, next) => {
-  res.render('item');
+  function getItem(fn) {
+    db.query('SELECT id, title, description FROM item WHERE id = ? LIMIT 1',
+      [req.params.id], (err, results) => {
+        if (err) {
+          return next(err);
+        }
+
+        if (!results[0]) {
+          return res.sendStatus(404);
+        }
+
+        fn(results[0]);
+      }
+    );
+  }
+
+  function getReviews(item_id, fn) {
+    db.query('SELECT text, stars FROM review WHERE id = ?',
+      [item_id], (err, results) => {
+        if (err) {
+          return next(err);
+        }
+
+        fn(results);
+      }
+    );
+  }
+
+  getItem((item) => {
+    getReviews(item.id, (reivews) => {
+      res.render('item', { item: item, reviews: reivews });
+    });
+  });
 });
 
 app.post('/item/:id/reivew', (req, res, next) => {
