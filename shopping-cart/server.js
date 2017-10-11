@@ -50,7 +50,7 @@ app.get('/item/:id', (req, res, next) => {
   }
 
   function getReviews(item_id, fn) {
-    db.query('SELECT text, stars FROM review WHERE id = ?',
+    db.query('SELECT text, stars FROM review WHERE item_id = ?',
       [item_id], (err, results) => {
         if (err) {
           return next(err);
@@ -68,7 +68,7 @@ app.get('/item/:id', (req, res, next) => {
   });
 });
 
-app.post('/item/:id/reivew', (req, res, next) => {
+app.post('/item/:id/review', (req, res, next) => {
   db.query('INSERT INTO review SET item_id = ?, stars = ?, text = ?',
     [req.params.id, req.body.stars, req.body.text], (err, info) => {
       if (err) {
