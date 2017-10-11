@@ -24,6 +24,7 @@
   "dependencies": {
     "express": "^4.16.2",
     "jade": "^1.11.0",
+    "mysql2": "^1.4.2",
     "sequelize": "^4.13.8"
   },
   "devDependencies": {
