@@ -25,3 +25,14 @@ $(function () {
     });
     form.find('input').val(''); // clear the input
   }); });
+
+$('ul').delegate('a.delete', 'click', function (ev) {
+  ev.preventDefault();
+  var li = $(this).closest('li');
+  $.ajax({
+    url: $(this).attr('href')
+    , type: 'DELETE'
+    , success: function () {
+      li.remove();
+    }
+  }); });
