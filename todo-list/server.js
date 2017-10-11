@@ -36,7 +36,11 @@ app.get('/', (req, res, next) => {
 });
 
 app.delete('/project/:id', (req, res, next) => {
-
+  Project.find(Number(req.params.id)).then(proj => {
+    proj.destroy().then(() => {
+      res.sendStatus(200);
+    }).catch(next);
+  }).catch(next);
 });
 
 app.post('/projects', (req, res, next) => {
@@ -62,7 +66,11 @@ app.post('/project/:id/tasks', (req, res, next) => {
 });
 
 app.delete('/task/:id', (req, res, next) => {
-
+  Task.find(Number(req.params.id)).then(task => {
+    task.destroy().then(() => {
+      res.sendStatus(200);
+    }).catch(next);
+  }).catch(next);
 });
 
 app.listen(3000, () => {
