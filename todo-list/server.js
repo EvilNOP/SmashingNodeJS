@@ -30,7 +30,9 @@ app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
 
 app.get('/', (req, res, next) => {
-  res.render('index');
+  Project.findAll().then(projects => {
+    res.render('index', { projects: projects });
+  }).catch(next);
 });
 
 app.delete('/project/:id', (req, res, next) => {
@@ -44,7 +46,11 @@ app.post('/projects', (req, res, next) => {
 });
 
 app.get('/project/:id/task', (req, res, next) => {
-
+  Project.find(Number(req.body.params.id)).then(project => {
+    project.getTasks().on('success', tasks => {
+      res.render('tasks', { project: project, tasks: tasks });
+    });
+  }).catch(next);
 });
 
 app.post('/project/:id/tasks', (req, res, next) => {
