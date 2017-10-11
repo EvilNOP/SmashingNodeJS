@@ -12,7 +12,9 @@ app.set('views', __dirname + '/views');
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res, next) => {
-  res.render('index', { items: [] });
+  db.query('SELECT id, title, description FROM item', (err, results) => {
+    res.render('index', { items: results });
+  });
 });
 
 app.post('/create', (req, res, next) => {
