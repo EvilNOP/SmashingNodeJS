@@ -1,0 +1,32 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EvilNOP/SmashingNodeJS.git"
+  },
+  "keywords": [
+    "sequelize",
+    "express",
+    "jade"
+  ],
+  "author": "EvilNOP",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EvilNOP/SmashingNodeJS/issues"
+  },
+  "homepage": "https://github.com/EvilNOP/SmashingNodeJS#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "jade": "^1.11.0",
+    "sequelize": "^4.13.8"
+  },
+  "devDependencies": {
+    "eslint": "^4.8.0"
+  }
+}
