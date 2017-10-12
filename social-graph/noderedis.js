@@ -13,7 +13,7 @@ User.prototype.find = function (id, fn) {
 
     fn(null, new User(id, obj));
   });
-}
+};
 
 User.prototype.save = function (fn) {
   if (!this.id) {
@@ -21,7 +21,7 @@ User.prototype.save = function (fn) {
   }
 
   client.hmset('user:' + this.id + ':data', this.data, fn);
-}
+};
 
 const client = redis.createClient();
 
